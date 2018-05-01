@@ -1,0 +1,9 @@
+spring2  populateBean递归调用
+
+getBean是完成依赖注入，将需要加载的类实例化。
+
+populateBean是为了实现Autowire标签的注入
+
+在实例化controller的时候，可能会出现一同注入Autowire标签标识的实例，这个Autowire的实例可能还未初始化，此时会报空指针异常
+
+解决方法就是先判断Autowire的类是否已经实例化，如果还未实例化，就再递归调用getBean方法实例化。
